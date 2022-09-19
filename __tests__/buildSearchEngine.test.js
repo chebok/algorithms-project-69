@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/extensions */
-import { buildSearchEngine } from '../src/buildSearchEngine.js';
+import buildSearchEngine from '../src/buildSearchEngine.js';
 
 const doc1 = { id: 'doc1', text: "I can't shoot straight unless I've had a pint!" };
 const doc2 = { id: 'doc2', text: "Don't shoot shoot shoot that thing at me." };
