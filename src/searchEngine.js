@@ -3,7 +3,7 @@ const createReverseIndex = (engine) => {
   const uniqWords = [...new Set(words)];
   return uniqWords.reduce((acc, word) => {
     const result = engine.fixWord(word).map((element) => [element.id, element.relevant.count]);
-    console.log(result);
+    console.log(result, '2');
     if (!result) {
       return acc;
     }
@@ -20,7 +20,7 @@ export default class SearchEngine {
   fixWord(token) {
     return this.docs.map((doc) => {
       const result = doc.text.match(/[\w]+/g).filter((str) => token === str);
-      console.log(result);
+      console.log(result, '1');
       return {
         ...doc,
         relevant: {
@@ -41,7 +41,6 @@ export default class SearchEngine {
       return [];
     }
     return this.docs.map((doc) => {
-      console.log(result);
       const docResult = result.filter(([id]) => doc.id === id);
       const wordsCount = docResult.length;
       const generalCount = docResult.reduce((acc, [, value]) => acc + value, 0);
