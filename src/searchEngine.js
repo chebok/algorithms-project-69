@@ -28,7 +28,7 @@ export default class SearchEngine {
 
   search(token) {
     const term = token.match(/\w+/g);
-    if (term.length === 0) {
+    if (term === null) {
       return [];
     }
     const result = term.flatMap((word) => this.reverseIndex[word]);
