@@ -41,6 +41,7 @@ export default class SearchEngine {
       return [];
     }
     return this.docs.map((doc) => {
+      console.log(result, '3');
       const docResult = result.filter(([id]) => doc.id === id);
       const wordsCount = docResult.length;
       const generalCount = docResult.reduce((acc, [, value]) => acc + value, 0);
