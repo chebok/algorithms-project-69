@@ -32,6 +32,9 @@ export default class SearchEngine {
       return [];
     }
     const result = term.flatMap((word) => this.reverseIndex[word]);
+    if (!result) {
+      return [];
+    }
     return this.docs.map((doc) => {
       const docResult = result.filter(([id]) => doc.id === id);
       const wordsCount = docResult.length;
