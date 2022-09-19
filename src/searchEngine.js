@@ -28,6 +28,9 @@ export default class SearchEngine {
 
   search(token) {
     const term = token.match(/\w+/g);
+    if (term.length === 0) {
+      return [];
+    }
     const result = term.flatMap((word) => this.reverseIndex[word]);
     return this.docs.map((doc) => {
       const docResult = result.filter(([id]) => doc.id === id);
