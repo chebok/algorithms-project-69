@@ -1,5 +1,5 @@
 const createReverseIndex = (engine) => {
-  const words = engine.docs.reduce((acc, { text }) => [...acc, ...text.match(/[\w']+/g)], []);
+  const words = engine.docs.reduce((acc, { text }) => [...acc, ...text.match(/[\w]+/g)], []);
   const uniqWords = [...new Set(words)];
   return uniqWords.reduce((acc, word) => {
     const result = engine.fixWord(word).map((element) => [element.id, element.relevant.count]);
@@ -15,7 +15,7 @@ export default class SearchEngine {
 
   fixWord(token) {
     return this.docs.map((doc) => {
-      const result = doc.text.match(/[\w']+/g).filter((str) => token === str);
+      const result = doc.text.match(/[\w]+/g).filter((str) => token === str);
       return {
         ...doc,
         relevant: {
@@ -36,6 +36,7 @@ export default class SearchEngine {
       return [];
     }
     return this.docs.map((doc) => {
+      console.log(result);
       const docResult = result.filter(([id]) => doc.id === id);
       const wordsCount = docResult.length;
       const generalCount = docResult.reduce((acc, [, value]) => acc + value, 0);
