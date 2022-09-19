@@ -14,10 +14,21 @@ const docs = [doc1, doc2, doc3];
 
 test('test1', () => {
   const searchEngine = buildSearchEngine(docs);
-  expect(searchEngine.search('shoot')).toEqual(['doc1', 'doc2']);
+  expect(searchEngine.search('shoot')).toEqual(['doc2', 'doc1']);
 });
 
 test('test2', () => {
   const searchEngine = buildSearchEngine([]);
   expect(searchEngine.search('shoot')).toEqual([]);
+});
+
+test('test3', () => {
+  const searchEngine = buildSearchEngine([doc1]);
+  expect(searchEngine.search('pint')).toEqual(['doc1']);
+  expect(searchEngine.search('pint!')).toEqual(['doc1']);
+});
+
+test('test4', () => {
+  const searchEngine = buildSearchEngine(docs);
+  expect(searchEngine.search('shoot at me')).toEqual(['doc2', 'doc1']);
 });
