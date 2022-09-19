@@ -3,6 +3,9 @@ const createReverseIndex = (engine) => {
   const uniqWords = [...new Set(words)];
   return uniqWords.reduce((acc, word) => {
     const result = engine.fixWord(word).map((element) => [element.id, element.relevant.count]);
+    if (!result) {
+      return acc;
+    }
     return { ...acc, [word]: result };
   }, {});
 };
